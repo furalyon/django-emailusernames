@@ -1,0 +1,7 @@
+{% extends "email-base.html" %}
+{% block content %}
+<h2>Verify Email</h2>
+<p style='margin-bottom:16px;'>Dear Sir/Madame,</p>
+<p style='margin-bottom:16px;'><a href="{{activation_url}}">Click Here</a> to activate your account at {{domain}}. If you did not register, please, ignore this email.</p>
+<p style='margin-bottom:16px;'>Use this url if the link doesn't work: {{activation_url}}</p>
+{% endblock content %}
