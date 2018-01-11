@@ -1,4 +1,4 @@
-from django.template import loader, Context
+from django.template import loader
 from django.core.mail import EmailMessage
 from django.conf import settings
 import string
@@ -19,7 +19,7 @@ def base_n2decimal(n):
 
 def render_template_as_string(template_name, data_dict):
     t = loader.get_template(template_name)
-    c = Context(data_dict)
+    c = data_dict
     return t.render(c)
 
 def send_email(subject, message, recipients, html_message='',

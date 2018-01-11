@@ -5,7 +5,7 @@
     }
     </style>
     <div style='border-bottom:1px solid black; margin-bottom:16px;'>
-        <h1 style='text-align: center;'>{{ORG_NAME}}</h1>
+        <h1 style='text-align: center;'>{{request.get_host}}</h1>
     </div>
 
     <div style='border-bottom:1px solid black; margin-bottom:16px;'>
@@ -14,5 +14,5 @@
     {% endblock content %}
     </div>
 
-    <div>Thank You,<br>{{ORG_NAME}}.</div>
+    <div>Thank You,<br>{{request.get_host}}.</div>
 </div>

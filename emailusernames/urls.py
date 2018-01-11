@@ -1,10 +1,15 @@
-from django.conf.urls import url
+from django.urls import path
 from .views import verify_email, send_email_verification_link, login
+from django.conf import settings
+
+app_name = 'emailusernames'
 
 urlpatterns = [
-    url(r'^verify-email/(?P<slug>\w+)/(?P<key>[-\w]+)$',
+    path('verify-email/<str:slug>/<str:key>',
         verify_email, name="verify-email"),
-    url(r'^send-email-verification-link/(?P<slug>\w+)$',
+    path('send-email-verification-link/<str:slug>',
         send_email_verification_link,
         name='send-email-verification-link'),
+    path('login', login, {
+       'template_name':'login.html'}, name='login'),
 ]

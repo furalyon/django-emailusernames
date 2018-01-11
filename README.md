@@ -1,5 +1,5 @@
 ===================
-Django Entities App
+Django EmailUsernames App
 ===================
 
 
@@ -26,19 +26,18 @@ Add ``emailusernames`` to your ``INSTALLED_APPS`` setting
 
 Migrate database
 ----------------
+NOTE: MIGRATION OF emailusernames HAS TO HAPPEN BEFORE admin
+
     python manage.py migrate
+
 
 Initial setup
 =============
 
 In your main ``urls.py`` add
 
-    1) url(r'^emailusernames/', include('emailusernames.urls', namespace='emailusernames')),
-
-    2) from emailusernames.views import login``
-
-    3) url(r'^login$', login, {
-        'template_name':'login.html'}, name='login'),
+    path('user/', include('emailusernames.urls',
+        namespace='emailusernames')),
 
 Templates
 ---------
@@ -51,10 +50,14 @@ settings.py
 -----------
 
     AUTH_USER_MODEL = 'emailusernames.User' #do not change
-    STAFF_LOGIN_DEFAULT_REDIRECT = '/admin/' #change as you wish
-    USER_LOGIN_DEFAULT_REDIRECT = '/' #change as you wish
+    LOGIN_URL = '/user/login' #the 'user' value is same as in url include
+    LOGIN_REDIRECT_URL = '/' #change as you wish
 
-    #Email sending setup as you normally do
+    # Email verification
+    EMAILUSERNAMES_VERIFY = False # True if email verification is needed
+    BASE_URL = 'http://<your-site.com>' # Needed to send absolute link to email
+
+    # Email sending setup as you normally do
     EMAIL_HOST = 'smtp.example.com'
     EMAIL_PORT = 587
     EMAIL_HOST_USER = 'admin@example.com'
@@ -63,15 +66,21 @@ settings.py
     DEFAULT_FROM_EMAIL = 'admin@example.com'
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-    EMAIL_VERIFICATION_NEEDED = True
-    # Following settings are needed if you set EMAIL_VERIFICATION_NEEDED to True
-    DOMAIN = 'example.com' #domain name of your site
-    ORG_NAME = 'EXAMPLE' #name of the site organisation
-    # change the following values for each site, the first time you setup
-    EMAIL_VERIFY_ADDKEY_1 = 8979893431 #random 10 digit number
-    EMAIL_VERIFY_ADDKEY_2 = 5445357861 #random 10 digit number
-    EMAIL_VERIFY_MULTIPLYKEY_1 = 23 #random 2 digit number
-    EMAIL_VERIFY_MULTIPLYKEY_2 = 67 #random 2 digit number
+    # Add 'emailusernames.context_processors.user_resources', to 
+    # context_processors
+    TEMPLATES = [
+        {
+            ....
+            'OPTIONS': {
+                ....
+                'context_processors': [
+                    ....
+                    'emailusernames.context_processors.user_resources',
+                ],
+            },
+        },
+    ]
+
 
 Signup Page
 -----------
@@ -80,7 +89,6 @@ Create your own signup page. Just use
     from emailusernames.admin import UserCreationForm
 
 as form for signup
-
 
 Usage
 =====

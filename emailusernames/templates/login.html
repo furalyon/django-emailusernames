@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Login</h1>
 <div class="login-form">
-    <form method="post" action="{% url 'login' %}">{% csrf_token %}
+    <form method="post" action="{{LOGIN_URL}}">{% csrf_token %}
         <ul class='form-fields'>
             {{form.as_ul}}
             <li class='btn--submit__container'><input type="submit" value="Login" class='btn--submit'>
