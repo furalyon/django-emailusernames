@@ -8,14 +8,14 @@ A simple django app to add values to ``models.ForeignKey`` fields on forms with 
 
 Pre-requisites
 ==============
-    1) This was built for Python 3.x. But just change __str__ to __unicode__ in the models and you should be fine with python 2.7
-    2) Django 1.8+
+    1) Python 3.5+
+    2) Django 2.0+
 
 
 Installation
 ============
 
-Download a copy of the emailusernames app folder in the repo and put it in your project folder.
+pip install https://github.com/ramkishorem/django-emailusernames/archive/master.zip (use version number instead of master for an older version)
 
 Add ``emailusernames`` to your ``INSTALLED_APPS`` setting
 
