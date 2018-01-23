@@ -24,12 +24,6 @@ Add ``emailusernames`` to your ``INSTALLED_APPS`` setting
         'emailusernames',
     )
 
-Migrate database
-----------------
-NOTE: MIGRATION OF emailusernames HAS TO HAPPEN BEFORE admin
-
-    python manage.py migrate
-
 
 Initial setup
 =============
@@ -80,6 +74,13 @@ settings.py
             },
         },
     ]
+
+
+Migrate database
+----------------
+NOTE: MIGRATION OF emailusernames HAS TO HAPPEN BEFORE admin
+
+    python manage.py migrate
 
 
 Signup Page
