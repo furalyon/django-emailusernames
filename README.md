@@ -1,6 +1,5 @@
-===================
 Django EmailUsernames App
-===================
+=========================
 
 
 A simple django app to add values to ``models.ForeignKey`` fields on forms with a single name field (and may be an autopopulated slug field) on the fly ajaxically.
