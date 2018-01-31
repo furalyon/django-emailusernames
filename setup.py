@@ -19,6 +19,7 @@ setup(
     author='Your Name',
     author_email='ramkishore123@gmail.com',
     install_requires=['django>=2.0'],
+    zip_safe=False,
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
